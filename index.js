@@ -54,10 +54,18 @@ client.connect(err => {
 
   app.post('/appoinmentbydate', (req, res) =>{
         const date = req.body;
-        console.log(date.date)
-        appoinmentCollection.find({date: date.date})
+        const email = req.body.email;
+        doctorsCollection.find({email: email})
+        .toArray((err, doctordocoment) =>{
+          const filter = {date: date.date}
+          if(doctordocoment.length === 0){
+            filter.email = email;
+          }
+          appoinmentCollection.find(filter)
         .toArray((err, documents) =>{
           res.send(documents)
+        })
+        
         })
   })
 
