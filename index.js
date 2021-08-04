@@ -5,7 +5,7 @@ const cors = require ('cors')
 const { MongoClient } = require('mongodb');
 const fileUpload = require('express-fileupload');
 
-const uri = "mongodb+srv://DoctorApp:199525@cluster0.jayfm.mongodb.net/DoctorsPortal?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jayfm.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 require('dotenv').config()
 const port = 5000
 
